@@ -120,7 +120,7 @@ Page({
 
   gotoLicense: function() {
     wx.navigateTo({      
-      url: '../license/license',    //要跳转到的页面路径
+      url: '../car-license/license',    //要跳转到的页面路径
     })
     console.log('okok'); 
   },
