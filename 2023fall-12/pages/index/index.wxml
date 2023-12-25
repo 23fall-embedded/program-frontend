@@ -24,35 +24,35 @@
     <image class="data-card-icon" src="/static/images/temperature.png"/>
     <view class="data-card-text">
       <view class="data-card-title">温度</view>
-      <view class="data-card-value">0</view>
+      <view class="data-card-value">{{temperature}}℃</view>
     </view>
   </view>
   <view class="data-card">
     <image class="data-card-icon" src="/static/images/humidity.png"/>
     <view class="data-card-text">
       <view class="data-card-title">湿度</view>
-      <view class="data-card-value">100%</view>
+      <view class="data-card-value">{{humidity}}%</view>
     </view>
   </view>
   <view class="data-card">
     <image class="data-card-icon" src="/static/images/alcohol.png"/>
     <view class="data-card-text">
       <view class="data-card-title">酒精检测</view>
-      <view class="data-card-value">yes or no</view>
+      <view class="data-card-value">{{mq3}}</view>
     </view>
   </view>
   <view class="data-card">
     <image class="data-card-icon" src="/static/images/light.png"/>
     <view class="data-card-text">
       <view class="data-card-title">光照</view>
-      <view class="data-card-value">0</view>
+      <view class="data-card-value">{{light}}</view>
     </view>
   </view>
   <view class="data-card">
     <image class="data-card-icon" src="/static/images/fire.png"/>
     <view class="data-card-text">
       <view class="data-card-title">火焰</view>
-      <view class="data-card-value">0</view>
+      <view class="data-card-value">{{fire}}</view>
     </view>
   </view>
   
@@ -62,7 +62,7 @@
       <view class="data-card-title">LED控制</view>
       <picker bindchange="LEDChange" mode="selector" value="{{LEDindex}}" range="{{LEDarray}}">
         <view class="picker">
-          <view class="data-card-value">请选择:{{LEDarray[LEDindex]}}</view>
+          <view class="data-card-value">{{LEDarray[LEDindex]}}</view>
         </view>
       </picker>
     </view>
@@ -71,14 +71,7 @@
     <image class="data-card-icon" src="/static/images/car.png"/>
     <view class="data-card-text">
       <view class="data-card-title">车牌检测</view>
-      <view class="data-card-value">0</view>
-    </view>
-  </view>
-  <view class="data-card">
-    <view class="data-card-text">
-      <button bindtap="houduan">点击发送请求</button>
-      <view class="data-card-title">测试</view>
-     
+      <view class="data-card-value">{{licenseCnt}}</view>
     </view>
   </view>
 </view>
