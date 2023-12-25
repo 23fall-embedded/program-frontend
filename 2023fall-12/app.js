@@ -13,7 +13,29 @@ App({
       }
     })
   },
+
+  onShow() {
+    var that = this
+    setInterval(function () {
+      wx.request({
+        url: 'http://localhost:8080/getData',
+        method: 'GET',
+        header: {
+          'content-type': 'application/json' 
+        },
+        success: function (res) {
+          that.globalData.license_img = res.data.img[0]
+          that.globalData.licenseArray = res.data.licenses
+          that.globalData.licenseCnt = res.data.licenses.length
+        }
+      })
+    }, 1000)
+    
+  },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    licensesArray: [],
+    license_img: '',
+    licenseCnt: 0
   }
 })

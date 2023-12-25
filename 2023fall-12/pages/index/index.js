@@ -44,9 +44,7 @@ Page({
     mq3: "否",
     fire: "否",
     light: "否",
-    licenseCnt: 0,
-    license_img: "1234",
-    licenseArray: []
+    licenseCnt: 0
   },
 
   onShow: function () {
@@ -69,7 +67,8 @@ Page({
           'content-type': 'application/json' // 默认值
         },
         success: function (res) {//成功交互后触发
-          console.log(res.data)//打印到控制台
+          
+          const app = getApp()
           let mq3Status = (res.data.mq3[0] == "0" ? "否" : "是");
           let lightStatus = (res.data.light[0] == "0" ? "否" : "是");
           let fireStatus = (res.data.fire[0] == "0" ? "否" : "是");
@@ -79,9 +78,7 @@ Page({
             mq3: mq3Status,
             light: lightStatus,
             fire: fireStatus,
-            licenseCnt: res.data.licenses.length,
-            license_img: res.data.img[0],
-            licenseArray: res.data.licenses
+            licenseCnt: app.globalData.licenseCnt
           })
         }
       })
@@ -181,7 +178,6 @@ Page({
     wx.navigateTo({      
       url: '../car-license/license',    //要跳转到的页面路径
     })
-    console.log('okok'); 
   },
 
   onLoad() {
