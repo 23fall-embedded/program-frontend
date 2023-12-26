@@ -18,7 +18,7 @@ App({
     var that = this
     setInterval(function () {
       wx.request({
-        url: 'http://localhost:8080/getData',
+        url: 'http://124.70.165.173:8080/getData',
         method: 'GET',
         header: {
           'content-type': 'application/json' 

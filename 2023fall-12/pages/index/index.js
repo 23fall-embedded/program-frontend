@@ -61,7 +61,7 @@ Page({
     var that = this;
     setInterval(function () {
       wx.request({
-        url: 'http://localhost:8080/getData',
+        url: 'http://124.70.165.173:8080/getData',
         method: 'GET',
         header: {
           'content-type': 'application/json' // 默认值
@@ -94,7 +94,7 @@ Page({
     return new Promise(
       resolve => {
         wx.request({
-          url: 'http://localhost:8080/sendData',
+          url: 'http://124.70.165.173:8080/sendData',
           data: {
             "loc": that.data.region[2],
             "adm": that.data.region[1]
@@ -157,7 +157,7 @@ Page({
     return new Promise(
       resolve => {
         wx.request({
-          url: 'http://localhost:8080/sendData',
+          url: 'http://124.70.165.173:8080/sendData',
           data: {
             "led": that.data.LEDarray[e.detail.value]
           },
