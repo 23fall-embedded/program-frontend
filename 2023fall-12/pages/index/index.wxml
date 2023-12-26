@@ -67,7 +67,7 @@
       </picker>
     </view>
   </view>
-  <view class="data-card" bind:tap="gotoLicense">
+  <view class="data-card">
     <image class="data-card-icon" src="/static/images/car.png"/>
     <view class="data-card-text">
       <view class="data-card-title">车牌检测</view>

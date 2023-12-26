@@ -10,6 +10,5 @@
       <image class="data-card-icon" src="/static/images/car.png"/>
       <image src="{{license_img}}" mode="widthFix" class="car-img"/>
   </view>
-  <button bind:tap="goback">返回</button>
 </view>
 

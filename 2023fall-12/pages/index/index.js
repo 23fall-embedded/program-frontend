@@ -174,12 +174,6 @@ Page({
     
   },
 
-  gotoLicense: function() {
-    wx.navigateTo({      
-      url: '../car-license/license',    //要跳转到的页面路径
-    })
-  },
-
   onLoad() {
     this.getLocationID().then(result => {
       this.getWeatherInfo()
