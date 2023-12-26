@@ -30,10 +30,10 @@
         "selectedIconPath": "static/images/home-active.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/car-license/license",
         "text": "",
-        "iconPath": "static/images/user.png",
-        "selectedIconPath": "static/images/user-active.png"
+        "iconPath": "static/images/car-show-inactive.png",
+        "selectedIconPath": "static/images/car-show-active.png"
       }
     ]
   }

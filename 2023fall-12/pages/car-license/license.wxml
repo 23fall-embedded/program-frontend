@@ -1,7 +1,14 @@
 <!--pages/license.wxml-->
-<text>你好</text>
-<block wx:for="{{licenseArray}}">
-  <view>{{item}}</view>
-</block>
-<image src="{{license_img}}" mode=""/>
-<view bind:tap="goback">返回</view>
+<view class="container">
+  <view class="data-card">
+    <view class="car">
+    <text class="data-card-value">车牌检测：</text>
+      <view wx:for="{{licenseArray}}" wx:key="index">
+        <view class="data-card-value">{{item}}</view>
+      </view>
+    </view>
+      <image class="data-card-icon" src="/static/images/car.png"/>
+      <image src="{{license_img}}" mode="widthFix" class="car-img"/>
+  </view>
+</view>
+
