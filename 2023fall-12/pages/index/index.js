@@ -1,11 +1,7 @@
-// index.js
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 
 
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
     list: '',
     region: ['山东省', '威海市', '环翠区'],
@@ -56,7 +52,6 @@ Page({
     )
   },
 
-  //触发事件
   houduan: function () {
     var that = this;
     setInterval(function () {
@@ -64,9 +59,9 @@ Page({
         url: 'http://124.70.165.173:8080/getData',
         method: 'GET',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json' 
         },
-        success: function (res) {//成功交互后触发
+        success: function (res) {
           
           const app = getApp()
           let mq3Status = (res.data.mq3[0] == "0" ? "否" : "是");
@@ -121,14 +116,13 @@ Page({
       },
       success: function(res) {
         that.setData({now: res.data.now})
-        //console.log(res.data)
       }
     })
   },
 
   getLocationID: function() {
     var that = this
-    return new Promise(  //解决异步问题
+    return new Promise( 
       resolve => {
         wx.request({
           url: 'https://geoapi.qweather.com/v2/city/lookup?',
@@ -152,8 +146,6 @@ Page({
     this.setData({
       LEDindex: e.detail.value
     })
-    console.log(e.detail.value);
-    console.log(that.data.LEDarray[e.detail.value]);
     return new Promise(
       resolve => {
         wx.request({
@@ -166,7 +158,7 @@ Page({
           },
           method: 'POST',
           success() {
-            console.log('LED success');
+            
           }
         })
       }
