@@ -37,10 +37,12 @@ Page({
     LEDindex: 0,
     temperature: 0,
     humidity: 0,
-    mq3: "否",
+    mq3: 0,
     fire: "否",
     light: "否",
-    licenseCnt: 0
+    licenseCnt: 0,
+
+    alcohol: 999
   },
 
   onShow: function () {
@@ -50,6 +52,30 @@ Page({
         that.houduan()
       }
     )
+  },
+
+  alcoholChange: function(e) {
+    let that = this
+    this.setData({
+      alcohol: e.detail.value
+    })
+    console.log(that.data.alcohol)
+    wx.request({
+      url: 'http://124.70.165.173:8080/sendData',
+      data: {
+        "alc": that.data.alcohol
+      },
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      method: "POST",
+      success() {
+        console.log('alc');
+      },
+      fail() {
+        console.log('fail')
+      }
+    })
   },
 
   houduan: function () {
@@ -64,13 +90,12 @@ Page({
         success: function (res) {
           
           const app = getApp()
-          let mq3Status = (res.data.mq3[0] == "0" ? "否" : "是");
           let lightStatus = (res.data.light[0] == "0" ? "否" : "是");
           let fireStatus = (res.data.fire[0] == "0" ? "否" : "是");
           that.setData({
             temperature: res.data.temperature[0],
             humidity: res.data.humidity[0],
-            mq3: mq3Status,
+            mq3: res.data.mq3[0],
             light: lightStatus,
             fire: fireStatus,
             licenseCnt: app.globalData.licenseCnt
@@ -92,7 +117,7 @@ Page({
           url: 'http://124.70.165.173:8080/sendData',
           data: {
             "loc": that.data.region[2],
-            "adm": that.data.region[1]
+            "adm": that.data.region[1],
           },
           header: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -158,7 +183,7 @@ Page({
           },
           method: 'POST',
           success() {
-            
+            console.log('led');
           }
         })
       }
