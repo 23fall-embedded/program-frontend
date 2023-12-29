@@ -1,11 +1,7 @@
-// index.js
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 
 
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
     list: '',
     region: ['山东省', '威海市', '环翠区'],
@@ -41,10 +37,12 @@ Page({
     LEDindex: 0,
     temperature: 0,
     humidity: 0,
-    mq3: "否",
+    mq3: 0,
     fire: "否",
     light: "否",
-    licenseCnt: 0
+    licenseCnt: 0,
+
+    alcohol: 999
   },
 
   onShow: function () {
@@ -56,7 +54,30 @@ Page({
     )
   },
 
-  //触发事件
+  alcoholChange: function(e) {
+    let that = this
+    this.setData({
+      alcohol: e.detail.value
+    })
+    console.log(that.data.alcohol)
+    wx.request({
+      url: 'http://124.70.165.173:8080/sendData',
+      data: {
+        "alc": that.data.alcohol
+      },
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      method: "POST",
+      success() {
+        console.log('alc');
+      },
+      fail() {
+        console.log('fail')
+      }
+    })
+  },
+
   houduan: function () {
     var that = this;
     setInterval(function () {
@@ -64,18 +85,17 @@ Page({
         url: 'http://124.70.165.173:8080/getData',
         method: 'GET',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json' 
         },
-        success: function (res) {//成功交互后触发
+        success: function (res) {
           
           const app = getApp()
-          let mq3Status = (res.data.mq3[0] == "0" ? "否" : "是");
           let lightStatus = (res.data.light[0] == "0" ? "否" : "是");
           let fireStatus = (res.data.fire[0] == "0" ? "否" : "是");
           that.setData({
             temperature: res.data.temperature[0],
             humidity: res.data.humidity[0],
-            mq3: mq3Status,
+            mq3: res.data.mq3[0],
             light: lightStatus,
             fire: fireStatus,
             licenseCnt: app.globalData.licenseCnt
@@ -97,7 +117,7 @@ Page({
           url: 'http://124.70.165.173:8080/sendData',
           data: {
             "loc": that.data.region[2],
-            "adm": that.data.region[1]
+            "adm": that.data.region[1],
           },
           header: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -121,14 +141,13 @@ Page({
       },
       success: function(res) {
         that.setData({now: res.data.now})
-        //console.log(res.data)
       }
     })
   },
 
   getLocationID: function() {
     var that = this
-    return new Promise(  //解决异步问题
+    return new Promise( 
       resolve => {
         wx.request({
           url: 'https://geoapi.qweather.com/v2/city/lookup?',
@@ -152,8 +171,6 @@ Page({
     this.setData({
       LEDindex: e.detail.value
     })
-    console.log(e.detail.value);
-    console.log(that.data.LEDarray[e.detail.value]);
     return new Promise(
       resolve => {
         wx.request({
@@ -166,7 +183,7 @@ Page({
           },
           method: 'POST',
           success() {
-            console.log('LED success');
+            console.log('led');
           }
         })
       }

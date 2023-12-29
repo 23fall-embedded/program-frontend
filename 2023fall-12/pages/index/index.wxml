@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<navigation-bar title="嵌入式" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<navigation-bar title="" back="{{false}}" color="black" background="#FFF"></navigation-bar>
 <view class="page-container">
 <!-- 头部部分 -->
   <view class="header-container">
@@ -37,8 +37,11 @@
   <view class="data-card">
     <image class="data-card-icon" src="/static/images/alcohol.png"/>
     <view class="data-card-text">
-      <view class="data-card-title">酒精检测</view>
-      <view class="data-card-value">{{mq3}}</view>
+      <view class="data-card-title">酒精浓度</view>
+      <view class="alcohol">{{mq3}}mg/L
+      
+      </view>
+      <input class="alcohol" type="digit" bindinput="alcoholChange" placeholder="请输入阈值"/>`
     </view>
   </view>
   <view class="data-card">
