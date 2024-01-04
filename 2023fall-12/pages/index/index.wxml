@@ -41,7 +41,7 @@
       <view class="alcohol">{{mq3}}mg/L
       
       </view>
-      <input class="alcohol" type="digit" bindinput="alcoholChange" placeholder="请输入阈值"/>`
+      <input class="alcohol" type="digit" bindblur="alcoholChange" placeholder="请输入阈值" />
     </view>
   </view>
   <view class="data-card">
