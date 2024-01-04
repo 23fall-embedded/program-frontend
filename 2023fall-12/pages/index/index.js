@@ -56,26 +56,23 @@ Page({
 
   alcoholChange: function(e) {
     let that = this
-    this.setData({
-      alcohol: e.detail.value
-    })
-    console.log(that.data.alcohol)
-    wx.request({
-      url: 'http://124.70.165.173:8080/sendData',
-      data: {
-        "alc": that.data.alcohol
-      },
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: "POST",
-      success() {
-        console.log('alc');
-      },
-      fail() {
-        console.log('fail')
-      }
-    })
+      that.setData({
+        alcohol: e.detail.value
+      })
+      console.log(e.detail.value)
+      wx.request({
+        url: 'http://124.70.165.173:8080/sendData',
+        data: {
+          "alc": that.data.alcohol
+        },
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        method: "POST",
+        success() {
+          console.log('alc');
+        }
+      })
   },
 
   houduan: function () {
@@ -88,7 +85,6 @@ Page({
           'content-type': 'application/json' 
         },
         success: function (res) {
-          
           const app = getApp()
           let lightStatus = (res.data.light[0] == "0" ? "否" : "是");
           let fireStatus = (res.data.fire[0] == "0" ? "否" : "是");
@@ -103,7 +99,6 @@ Page({
         }
       })
     }, 1000)
-    
   },
   regionChange: function (e) {
     let that = this;
@@ -123,9 +118,7 @@ Page({
             "Content-Type": "application/x-www-form-urlencoded"
           },
           method: 'POST',
-          success() {
-            console.log('Location success');
-          }
+          success() {}
         })
       }
     )
@@ -188,7 +181,6 @@ Page({
         })
       }
     )
-    
   },
 
   onLoad() {
